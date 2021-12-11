@@ -77,33 +77,49 @@ function checkNext(j, i) {
     count += checkNext(j - 1, i);
     count += checkNext(j, i + 1);
   } else if (i === text.length - 1 && j === 0) {
-  } else if (i === text.length - 1 && j === text[i].length - 1) {
-  } else if (i === 0) {
-  } else if (i === text.length - 1) {
-  } else if (j === 0) {
-  } else if (j === text[i].length - 1) {
-  }
-  try {
-    text[i + 1][j];
-    count += checkNext(j, i + 1);
-  } catch (err) {}
-
-  try {
-    text[i - 1][j];
+    count += checkNext(j+1, i);
     count += checkNext(j, i - 1);
-  } catch (err) {}
-
-  try {
-    text[i][j + 1];
-    count += checkNext(j + 1, i);
-  } catch (err) {}
-
-  try {
-    text[i][j - 1];
+  } else if (i === text.length - 1 && j === text[i].length - 1) {
     count += checkNext(j - 1, i);
-  } catch (err) {}
+    count += checkNext(j, i - 1);
+  } else if (i === 0) {
+    count += checkNext(j,i+1);
+    count += checkNext(j+1, i);
+    count += checkNext(j-1, i);
+  } else if (i === text.length - 1) {
+    count += checkNext(j, i - 1);
+    count += checkNext(j+1, i);
+    count += checkNext(j-1, i);
 
-  return count + addSelf;
+  } else if (j === 0) {
+    count += checkNext(j+1, i);
+    count += checkNext(j, i+1);
+    count += checkNext(j, i-1);
+  } else if (j === text[i].length - 1) {
+    count += checkNext(j-1, i);
+    count += checkNext(j, i+1);
+    count += checkNext(j, i-1);
+  }else{
+    count += checkNext(j, i + 1);
+  
+ 
+    count += checkNext(j, i - 1);
+  
+
+ 
+  
+    count += checkNext(j + 1, i);
+ 
+
+ 
+    count += checkNext(j - 1, i);
+  
+    count += checkNext(j, i + 1);
+  }
+
+  
+
+  return count + 1;
 }
 
 let scores = [];
@@ -112,12 +128,10 @@ console.log(pointInfo);
 for (const point of pointInfo) {
   const x = point[0];
   const y = point[1];
-  // for (let i = 0; i < text.length; i++) {
-  //   for (let j = 0; j < text[i].length; j++) {}
-  // }
+  
 
   scores.push(checkNext(x, y));
-  // console.log(count);
+  
 }
 
 console.log(text);
