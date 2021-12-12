@@ -30,7 +30,7 @@ function checker(x, y, points) {
     //right
     if (pointInfo[`${x + 1},${y}`]) {
       pointInfo[`${x + 1},${y}`]++;
-      checker(x + 1, y + 1, points);
+      checker(x + 1, y, points);
     }
 
     //left
